@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | Part 1</title>
+  </head>
+  <body style="background-color: #414141; color: aliceblue">
+    <h2>Amazing image</h2>
+    <div>
+      <ul id="images">
+        <li>
+          <img
+            width="200px"
+            height="150px"
+            id="fly"
+            src="https://images.pexels.com/photos/1262304/pexels-photo-1262304.jpeg"
+            alt="fly"
+            loading="lazy"
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            height="150px"
+            id="boat"
+            src="https://images.pexels.com/photos/194094/pexels-photo-194094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="boat"
+            loading="lazy"
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            height="150px"
+            id="owl"
+            src="https://images.pexels.com/photos/1543417/pexels-photo-1543417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="owl"
+            loading="lazy"
+          />
+        </li>
+        <li>
+          <img
+            width="200px"
+            height="150px"
+            id="wall"
+            src="https://images.pexels.com/photos/1742370/pexels-photo-1742370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="wall"
+            loading="lazy"
+          />
+        </li>
+        <li>
+          <a
+            href="https://www.google.com"
+            style="color: aliceblue; text-decoration: none"
+            >Google</a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    //Not preferred : does not provide complete event details
+    // document.getElementById("owl").onclick = function () {
+    //   alert("owl clicked");
+    // };
+
+    // attachEvent()
+    // jQuery - on
+
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById("images").addEventListener(
+    //   "click",
+    //   function (e) {
+    //     console.log("clicked inside the ul");
+    //   },
+    //   false
+    // );
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation()
+    // }, false)
+
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+
+    document.querySelector("#images").addEventListener("click", function (e) {
+      console.log(e.target.tagName);
+      if (e.target.tagName === "IMG") {
+        console.log(e.target.id);
+        let removeIt = e.target.parentNode;
+        removeIt.remove();
+      }
+    });
+
+    //removeIt.parentNode.removeChild(removeIt)
+  </script>
+</html>
