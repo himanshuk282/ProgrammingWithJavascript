@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | Practise 3</title>
+  </head>
+  <body>
+    <h1>Code : Background changer - Random color every second</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <script>
+      const start = document.getElementById("start");
+      const stop = document.getElementById("stop");
+      const body = document.querySelector("body");
+      let intervalRef;
+      const randomColor = function () {
+        const hexCode = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += hexCode[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+      const changeColor = function () {
+        if (!intervalRef) {
+          intervalRef = setInterval(changeBackground, 1000);
+        }
+        function changeBackground() {
+          body.style.backgroundColor = randomColor();
+        }
+      };
+      start.addEventListener("click", changeColor, false);
+      stop.addEventListener(
+        "click",
+        (e) => {
+          clearInterval(intervalRef);
+          intervalRef = null;
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
