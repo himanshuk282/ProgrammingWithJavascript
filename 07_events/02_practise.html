@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event | Practise 2</title>
+    <style>
+      body {
+        background-color: grey;
+        color: antiquewhite;
+      }
+      .container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+      }
+      .left-container,
+      .right-container,
+      .drop-container {
+        border: 1px #000 solid;
+        width: 350px;
+      }
+      .note-container {
+        background-color: antiquewhite;
+        color: black;
+        width: auto;
+        height: 20vh;
+      }
+      .note-header {
+        margin-left: 35%;
+      }
+      .note-content {
+        border: 2px #000 solid;
+        margin: 5px;
+      }
+      .drop-container {
+        margin-left: 35%;
+        height: 20vh;
+        background-color: white;
+        color: black;
+        width: 450px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-heading">
+      <h2 class="heading-title">Drag and drop</h2>
+      <p class="heading-content">Demonstrate drag and drop using js.</p>
+    </section>
+    <section class="container">
+      <section class="left-container">
+        <div class="note-container">
+          <div class="note-header">Goals 🥅</div>
+          <hr />
+          <div class="note-content" draggable="true">
+            I want to be a good developer.
+          </div>
+        </div>
+      </section>
+      <section class="right-container">
+        <div class="note-container">
+          <div class="note-header">Skills 👷‍♂️</div>
+          <hr />
+          <div class="note-content" draggable="true">
+            I have relevant web development skills.
+          </div>
+        </div>
+      </section>
+    </section>
+    <hr />
+    <section class="drop-container">
+      <div class="note-header">Focus 🎯</div>
+    </section>
+    <script>
+      const noteContent = document.querySelectorAll(".note-content");
+      const dropContainer = document.querySelector(".drop-container");
+      let draggedContent;
+      //   console.log(noteContent);
+      noteContent.forEach((note) => {
+        note.addEventListener(
+          "dragstart",
+          function (event) {
+            draggedContent = event.target.innerHTML;
+          },
+          false
+        );
+      });
+
+      dropContainer.addEventListener(
+        "dragover",
+        function (event) {
+          event.preventDefault();
+        },
+        false
+      );
+      dropContainer.addEventListener(
+        "drop",
+        (event) => {
+          const noteElement = document.createElement("div");
+          noteElement.classList.add("note-content");
+          noteElement.appendChild(document.createTextNode(draggedContent));
+          dropContainer.appendChild(noteElement);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

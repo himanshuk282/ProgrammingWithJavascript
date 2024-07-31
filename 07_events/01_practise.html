@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | Practise</title>
+    <style>
+      body {
+        background-color: dimgray;
+        color: white;
+      }
+      .play-area {
+        height: 350px;
+        width: 350px;
+        background-color: antiquewhite;
+        border: 2px black solid;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Learning Events</h2>
+    <h3>Track user mouse click event in the below area to create element at</h3>
+    <div class="play-area" id="playArea"></div>
+    <div class="output" id="result"></div>
+    <script>
+      const playGround = document.querySelector("#playArea");
+      const result = document.querySelector("#result");
+
+      playGround.addEventListener("click", function (event) {
+        const circle = document.createElement("div");
+        circle.style.border = "1px red solid";
+        circle.style.backgroundColor = "yellow";
+        circle.style.width = "50px";
+        circle.style.height = "50px";
+        circle.style.borderRadius = "50%";
+        circle.style.position = "absolute";
+        circle.style.left = event.pageX + "px";
+        circle.style.top = event.pageY + "px";
+        playGround.appendChild(circle);
+        result.innerHTML = `Client X: ${event.pageX} and Client Y: ${event.pageY}`;
+      });
+    </script>
+  </body>
+</html>
