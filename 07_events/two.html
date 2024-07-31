@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | Timeout</title>
+  </head>
+  <body>
+    <h1>Learning : Js at Chai and Code</h1>
+    <button id="stop">Stop</button>
+    <hr />
+    <h1>Experiment</h1>
+    <div id="event1"></div>
+    <div id="event2"></div>
+    <div id="event3"></div>
+    <script>
+      //setTimeout is an API method that places the handler in a callback registry and then adds after the time provided in the call stack
+      //Change Header
+      const header = document.querySelector("h1");
+      //The below code executes immediately
+      //   header.innerHTML = "Himanshu Learning JS";
+      //To make it async
+      const changeHeader = setTimeout(function () {
+        header.innerHTML = "Himanshu Learning JS";
+      }, 2000);
+
+      //The above change is reflected in after 2seconds
+      //clearTimeout : used to stop the async code from execution
+      const stop = document.querySelector("#stop");
+      stop.addEventListener(
+        "click",
+        (e) => {
+          clearTimeout(changeHeader);
+        },
+        false
+      );
+
+      //Experiment : Execution of multiple lines
+      document.querySelector("#event1").innerHTML =
+        "This is normal line in code. At : " + `${Date.now()}`;
+      setTimeout(() => {
+        document.querySelector("#event2").innerHTML =
+          "This is a set time out with 0 seconds At : " + `${Date.now()}`;
+      }, 0);
+      document.querySelector("#event3").innerHTML =
+        "This is normal line in code Event 3 At : " + `${Date.now()}`;
+    </script>
+  </body>
+</html>
