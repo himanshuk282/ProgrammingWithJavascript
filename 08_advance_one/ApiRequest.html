@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Request | XHR</title>
+  </head>
+  <body>
+    <!-- <section>
+      <p>
+        Value State Description 0 UNSENT Client has been created. open() not
+        called yet. 1 OPENED open() has been called. 2 HEADERS_RECEIVED send()
+        has been called, and headers and status are available. 3 LOADING
+        Downloading; responseText holds partial data. 4 DONE The operation is
+        complete.
+      </p>
+    </section> -->
+    <!-- <hr /> -->
+    <section class="user-details"></section>
+    <script>
+      const userContainer = document.querySelector(".user-details");
+      const apiUrl = "https://api.github.com/users/himanshuk282";
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", apiUrl);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          const response = JSON.parse(this.responseText);
+          console.log(response);
+          const imageSrc = response?.avatar_url;
+          const userBio = response?.bio;
+          const userName = response?.name;
+          displayUser(userName, userBio, imageSrc);
+        }
+      };
+      xhr.send();
+      function displayUser(userName, userBio, imageSrc) {
+        //image
+        let imageElement = document.createElement("img");
+        imageElement.setAttribute("src", imageSrc);
+        imageElement.alt = "Profile Picture";
+        imageElement.style.height = "240px";
+        imageElement.style.width = "220px";
+        imageElement.style.border = "2px solid #000";
+
+        //Username with Bio
+        let nameElement = document.createElement("h3");
+        let fullName = document.createTextNode(userName);
+        nameElement.append(fullName, "✨", document.createTextNode(userBio));
+        nameElement.style.border = "1px solid #000";
+        nameElement.style.backgroundColor = "#212121";
+        nameElement.style.color = "#FFF";
+
+        //Link to github profile
+        let githubAnchor = document.createElement("a");
+        githubAnchor.innerHTML = "Go to Github";
+        githubAnchor.href = "https://github.com/himanshuk282";
+        githubAnchor.target = "_blank";
+        githubAnchor.style.textDecoration = "none";
+        githubAnchor.style.padding = "5px";
+        githubAnchor.style.backgroundColor = "#212121";
+        githubAnchor.style.color = "#FFF";
+        githubAnchor.style.border = "1px solid #000";
+
+        userContainer.appendChild(nameElement);
+        userContainer.appendChild(imageElement);
+        userContainer.appendChild(document.createElement("hr"));
+        userContainer.appendChild(githubAnchor);
+      }
+    </script>
+  </body>
+</html>
